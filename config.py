@@ -1,3 +1,9 @@
-#Shamim,c4dae515ee722cc8353cbe3e20ffdcb70f65d4cc9ade9f312037569e89165629,0cda1045e288c976bdfafe78d85eea4cc39f1486b6034235eae2a409bcb90c88
 
-BASE_URL = "https://kzmcpfklrqymzazaxlmv.supabase.co/functions/v1/partner-loan-api"
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
+ADMIN_API_KEY = os.getenv("ADMIN_API_KEY")
+BASE_URL = os.getenv("BASE_URL")
