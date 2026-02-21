@@ -5,7 +5,7 @@ from config import BASE_URL
 
 client = LoanApiClient()
 
-#"tekniskt" test mha requests-biblioteket, dÃ¤r headers, HTTP statuskod mm valideras
+#"tekniskt" test mha requests-biblioteket, där headers, HTTP statuskod mm valideras
 def test_get_status():
     response = client.get_loans()
     assert response.status_code == 200
@@ -15,5 +15,3 @@ def test_get_without_key():
     response = requests.get(f"{BASE_URL}/partner-loan-api")
     assert response.status_code ==401
 
-    
-#"affÃ¤rs"-test mha requests-biblioteket, dÃ¤r del av JSON-svaret/body:n valideras
