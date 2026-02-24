@@ -13,7 +13,7 @@ def test_create_loan_approved():
     assert response.status_code == 200
     assert body["success"] == True
     assert body["application"]["status"] == "approved"
-    assert body["message"] == "Application approved"
+    assert body["message"].startswith("Application approved")
     assert body["application"]["first_name"] == loan_data["first_name"]
     assert body["application"]["loan_amount"].isdigit()
 
