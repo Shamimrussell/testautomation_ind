@@ -3,15 +3,16 @@ class PersonalInfoPage:
         self.page = page
 
     def fill_personal_number(self, personal_number):
+        self.page.wait_for_selector("#personalNumber")
         # Tar bort de första 2 siffrorna (seklet) om det är 12 siffror
         pnr = personal_number[-10:] if len(personal_number) == 12 else personal_number
         self.page.locator("#personalNumber").fill(pnr)
 
     def fill_first_name(self, first_name):
-        self.page.locator("#FirstName").fill(first_name)
+        self.page.locator("#firstName").fill(first_name)
 
     def fill_last_name(self, last_name):
-        self.page.locator("#LastName").fill(last_name)
+        self.page.locator("#lastName").fill(last_name)
 
     def fill_email(self, email):
         self.page.locator("#email").fill(email)

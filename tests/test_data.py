@@ -6,6 +6,14 @@ fake = Faker("sv_SE")
 
 SKATTEVERKET_API_URL = "https://skatteverket.entryscape.net/rowstore/dataset/b4de7df7-63c0-4e7e-bb59-1f156a591763"
 
+EMPLOYMENT_TYPES = [
+    "Tillsvidareanställning",
+    "Visstidsanställning",
+    "Egen företagare",
+    "Pensionär",
+    "Student",
+    "Arbetssökande"
+]
 
 def get_random_testpersonnummer():
     response = requests.get(SKATTEVERKET_API_URL)
@@ -25,4 +33,7 @@ def generate_random_loan_applicant():
         "postcode": fake.postcode(),
         "city": fake.city(),
         "phone": fake.phone_number(),
+        "employment_type": random.choice(EMPLOYMENT_TYPES),
+        "employer": fake.company(),
+        "income": str(fake.random_int(min=15000, max=100000, step=1000)),
     }
