@@ -5,7 +5,7 @@ from tests.test_data import generate_random_loan_applicant
 
 
 def test_loan_flow_personal_info(page: Page):
-    """Testar att man kan välja lånetyp och fylla i personuppgifter"""
+    #Testar att man kan välja lånetyp och fylla i personuppgifter
     applicant = generate_random_loan_applicant()
 
     # Startsidan
