@@ -1,6 +1,8 @@
 from playwright.sync_api import Page
 from src.pages.start_page import StartPage
 from src.pages.personal_info import PersonalInfoPage
+from src.pages.income_page import IncomePage
+from src.pages.loan_amount import LoanAmountPage
 from tests.test_data import generate_random_loan_applicant
 
 
@@ -23,17 +25,13 @@ def test_loan_flow_personal_info(page: Page):
     assert page.get_by_role("heading", name="Inkomstuppgifter").is_visible()
 
     # Inkomst
-    page.wait_for_selector("#monthlyIncome")
-    page.locator("#monthlyIncome").fill(applicant["income"])
-    page.locator("#employmentType").click()
-    page.get_by_text("Tillsvidareanställd", exact=True).click()
-    page.locator("#employer").fill(applicant["employer"])
-    page.get_by_role("button", name="Nästa").click()
+    income_page = IncomePage(page)
+    income_page.fill_income_information(applicant, applicant["employment_type_gui"])
 
     # Lånebelopp
     page.wait_for_selector("#loanAmount")
-    page.locator("#loanAmount").fill(applicant["loan_amount"])
-    page.get_by_role("button", name="Nästa").click()
+    loan_amount_page = LoanAmountPage(page)
+    loan_amount_page.fill_all(applicant)
 
     # Sammanställning och skicka in ansökan
     page.get_by_role("button", name="Skicka ansökan").click()
