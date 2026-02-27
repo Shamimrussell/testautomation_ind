@@ -1,4 +1,3 @@
-from src.helpers.loan_client import LoanApiClient
 import requests
 from config import BASE_URL
 

@@ -1,5 +1,4 @@
 import pytest
-from src.helpers.loan_client import LoanApiClient
 from tests.test_data import generate_random_loan_applicant
 
 
