@@ -13,7 +13,7 @@ def test_create_loan_approved(client):
     assert body["application"]["status"] == "approved"
     assert body["message"].startswith("Application approved")
     assert body["application"]["first_name"] == loan_data["first_name"]
-    assert body["application"]["loan_amount"].isdigit()
+    assert int(body["application"]["loan_amount"]) <= 100000
 
 
 @pytest.mark.parametrize("loan_amount, expected_status_code", [
@@ -25,7 +25,7 @@ def test_create_loan_approved(client):
 
 
 def test_loan_amount_limits(client, loan_amount, expected_status_code):
-    """Testar gränsvärden för max lånebelopp"""
+    #Testar gränsvärden för max lånebelopp
     loan_data = generate_random_loan_applicant()
     loan_data["loan_amount"] = loan_amount
     
